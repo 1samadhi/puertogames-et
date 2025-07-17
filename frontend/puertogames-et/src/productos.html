@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos - PuertoGames</title>
+    <link href="output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Barra de Navegación -->
+    <nav class="bg-gray-900 text-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo y Marca -->
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition duration-300">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-xl font-bold">PuertoGames</span>
+                    </a>
+                </div>
+
+                <!-- Menú de Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-blue-400 transition duration-300 font-medium">Inicio</a>
+                    <a href="productos.html" class="hover:text-blue-400 transition duration-300 font-medium">Productos</a>
+                    <a href="contacto.html" class="hover:text-blue-400 transition duration-300 font-medium">Contacto</a>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
+                        Iniciar Sesión
+                    </button>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menú Móvil -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Inicio</a>
+                    <a href="productos.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Productos</a>
+                    <a href="contacto.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Contacto</a>
+                    <button class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="flex-grow flex flex-col min-h-screen">
+        <!-- Espacio para la barra de navegación fija -->
+        <div class="pt-16 flex-grow">
+            <!-- Header de la página -->
+            <header class="bg-gray-900 text-white py-12">
+                <div class="container mx-auto px-4">
+                    <h1 class="text-4xl font-bold text-center">Nuestros Productos</h1>
+                    <p class="text-center mt-4 text-gray-300">Descubre nuestra amplia selección de videojuegos</p>
+                </div>
+            </header>
+
+            <!-- Filtros y Ordenamiento -->
+            <div class="bg-white shadow-md py-4">
+                <div class="container mx-auto px-4">
+                    <div class="flex flex-wrap items-center justify-between gap-4">
+                        <div class="flex items-center space-x-4">
+                            <select id="category-filter" class="bg-gray-100 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Todas las categorías</option>
+                                <option value="moba">MOBA</option>
+                                <option value="fps">FPS</option>
+                                <option value="rpg">RPG</option>
+                                <option value="battle-royale">Battle Royale</option>
+                                <option value="lucha">Lucha</option>
+                            </select>
+                            <select id="sort-filter" class="bg-gray-100 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="popular">Más populares</option>
+                                <option value="price-asc">Precio: Menor a Mayor</option>
+                                <option value="price-desc">Precio: Mayor a Menor</option>
+                                <option value="newest">Más recientes</option>
+                            </select>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-gray-600">Mostrar:</span>
+                            <select id="items-per-page" class="bg-gray-100 border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="6">6</option>
+                                <option value="12">12</option>
+                                <option value="24">24</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Listado de Productos -->
+            <main class="container mx-auto px-4 py-8">
+                <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Producto 1 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="rpg" data-price="59990" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1174180/header.jpg" alt="Red Dead Redemption 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Red Dead Redemption 2</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">RPG</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Aventura</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">$59.990</p>
+                            <a href="red-dead-redemption-2.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Producto 2 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="moba" data-price="0" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg" alt="Dota 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Dota 2</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">MOBA</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Estrategia</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Gratis</p>
+                            <a href="dota-2.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Producto 3 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="fps" data-price="0" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg" alt="Counter-Strike 2" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Counter-Strike 2</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">FPS</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Multijugador</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">Gratis</p>
+                            <a href="counter-strike-2.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Producto 4 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="battle-royale" data-price="29990" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG: BATTLEGROUNDS" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">PUBG: BATTLEGROUNDS</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Battle Royale</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">FPS</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">$29.990</p>
+                            <a href="pubg-battlegrounds.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Producto 5 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="rpg" data-price="49990" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Cyberpunk 2077</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">RPG</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Acción</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">$49.990</p>
+                            <a href="cyberpunk-2077.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Producto 6 -->
+                    <div class="product-card bg-white rounded-lg shadow-lg overflow-hidden" data-category="lucha" data-price="54990" data-date="2023-01-01">
+                        <img src="https://cdn.akamai.steamstatic.com/steam/apps/1971870/header.jpg" alt="Mortal Kombat 1" class="w-full h-48 object-cover">
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2">Mortal Kombat 1</h3>
+                            <div class="flex items-center space-x-2 mb-2">
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Lucha</span>
+                                <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-xs">Acción</span>
+                            </div>
+                            <p class="text-gray-600 mb-4">$54.990</p>
+                            <a href="mortal-kombat-1.html" class="block text-center bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                                Ver Detalles
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Paginación -->
+                <div id="pagination" class="flex justify-center mt-12 space-x-2">
+                    <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">Anterior</button>
+                    <button class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300">1</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">2</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">3</button>
+                    <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">Siguiente</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Pie de Página -->
+        <footer class="bg-gray-900 text-white py-8 mt-auto">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Sección de Marca -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-lg font-bold">PuertoGames</span>
+                    </div>
+
+                    <!-- Derechos de Autor -->
+                    <div class="text-center md:text-left">
+                        <p>PuertoGames © 2025</p>
+                        <p class="text-gray-400 text-sm">Todos los derechos reservados</p>
+                    </div>
+
+                    <!-- Enlaces -->
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Términos y Condiciones</a>
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Soporte</a>
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Política de Privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript para el menú móvil y filtros -->
+    <script>
+        // Menú móvil
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Filtros y ordenamiento
+        const categoryFilter = document.getElementById('category-filter');
+        const sortFilter = document.getElementById('sort-filter');
+        const itemsPerPage = document.getElementById('items-per-page');
+        const productsGrid = document.getElementById('products-grid');
+        const products = Array.from(document.getElementsByClassName('product-card'));
+
+        function filterAndSortProducts() {
+            const selectedCategory = categoryFilter.value;
+            const selectedSort = sortFilter.value;
+            const itemsToShow = parseInt(itemsPerPage.value);
+
+            // Filtrar productos
+            let filteredProducts = products;
+            if (selectedCategory) {
+                filteredProducts = products.filter(product => 
+                    product.dataset.category === selectedCategory
+                );
+            }
+
+            // Ordenar productos
+            filteredProducts.sort((a, b) => {
+                switch (selectedSort) {
+                    case 'price-asc':
+                        return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                    case 'price-desc':
+                        return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                    case 'newest':
+                        return new Date(b.dataset.date) - new Date(a.dataset.date);
+                    default:
+                        return 0;
+                }
+            });
+
+            // Limitar número de productos mostrados
+            filteredProducts = filteredProducts.slice(0, itemsToShow);
+
+            // Actualizar la visualización
+            productsGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                productsGrid.appendChild(product.cloneNode(true));
+            });
+
+            // Actualizar paginación
+            updatePagination(filteredProducts.length);
+        }
+
+        function updatePagination(totalItems) {
+            const pagination = document.getElementById('pagination');
+            const itemsPerPage = parseInt(document.getElementById('items-per-page').value);
+            const totalPages = Math.ceil(totalItems / itemsPerPage);
+
+            let paginationHTML = `
+                <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">Anterior</button>
+            `;
+
+            for (let i = 1; i <= totalPages; i++) {
+                paginationHTML += `
+                    <button class="px-4 py-2 ${i === 1 ? 'bg-blue-600 text-white' : 'border border-gray-300'} rounded-md hover:bg-gray-100 transition duration-300">${i}</button>
+                `;
+            }
+
+            paginationHTML += `
+                <button class="px-4 py-2 border border-gray-300 rounded-md hover:bg-gray-100 transition duration-300">Siguiente</button>
+            `;
+
+            pagination.innerHTML = paginationHTML;
+        }
+
+        // Event listeners para los filtros
+        categoryFilter.addEventListener('change', filterAndSortProducts);
+        sortFilter.addEventListener('change', filterAndSortProducts);
+        itemsPerPage.addEventListener('change', filterAndSortProducts);
+
+        // Inicializar la visualización
+        filterAndSortProducts();
+    </script>
+</body>
+</html> 

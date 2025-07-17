@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Demo - PuertoGames</title>
+    <link href="css/output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Barra de Navegación -->
+    <nav class="bg-gray-900 text-white shadow-lg w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo y Marca -->
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition duration-300">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-xl font-bold">PuertoGames</span>
+                    </a>
+                </div>
+                <!-- Menú de Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-blue-400 transition duration-300 font-medium">Inicio</a>
+                    <a href="productos.html" class="hover:text-blue-400 transition duration-300 font-medium">Productos</a>
+                    <a href="contacto.html" class="hover:text-blue-400 transition duration-300 font-medium">Contacto</a>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <main class="flex-grow container mx-auto px-4 py-12">
+        <div class="text-center mb-12">
+            <h1 class="text-4xl font-bold text-gray-800 mb-4">🌐 Demo de API Externa</h1>
+            <p class="text-xl text-gray-600">Integración con APIs públicas para el examen final</p>
+            <div class="mt-4 inline-flex items-center px-4 py-2 bg-green-100 text-green-800 rounded-lg">
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+                <span id="connectionStatus">Conectando con backend...</span>
+            </div>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Citas Inspiracionales -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <svg class="w-8 h-8 text-blue-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"></path>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-gray-800">Citas Inspiracionales</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Obtén citas motivacionales de la API Quotable.io</p>
+                <button id="quoteBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white py-3 rounded-lg transition duration-300 font-semibold mb-4">
+                    <span id="quoteBtnText">📝 Obtener Cita</span>
+                    <span id="quoteSpinner" class="hidden">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                        </svg>
+                        Cargando...
+                    </span>
+                </button>
+                <div id="quoteResult" class="hidden p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500">
+                    <blockquote id="quoteText" class="text-lg italic text-gray-700 mb-2"></blockquote>
+                    <cite id="quoteAuthor" class="text-sm text-gray-500"></cite>
+                </div>
+            </div>
+
+            <!-- Información del Clima -->
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex items-center mb-4">
+                    <svg class="w-8 h-8 text-orange-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z"></path>
+                    </svg>
+                    <h2 class="text-2xl font-bold text-gray-800">Información del Clima</h2>
+                </div>
+                <p class="text-gray-600 mb-4">Consulta el clima de cualquier ciudad usando wttr.in</p>
+                <div class="flex mb-4">
+                    <input type="text" id="cityInput" placeholder="Ingresa una ciudad..." class="flex-1 px-4 py-2 border border-gray-300 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-orange-500" value="Santiago">
+                    <button id="weatherBtn" class="bg-orange-500 hover:bg-orange-600 text-white px-6 py-2 rounded-r-lg transition duration-300 font-semibold">
+                        <span id="weatherBtnText">🌤️ Consultar</span>
+                        <span id="weatherSpinner" class="hidden">
+                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white inline" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Cargando...
+                        </span>
+                    </button>
+                </div>
+                <div id="weatherResult" class="hidden p-4 bg-gray-50 rounded-lg border-l-4 border-orange-500">
+                    <div id="weatherInfo" class="text-gray-700"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Estado de la API -->
+        <div class="mt-8 bg-white rounded-lg shadow-lg p-6">
+            <div class="flex items-center mb-4">
+                <svg class="w-8 h-8 text-green-500 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                <h2 class="text-2xl font-bold text-gray-800">Estado del Sistema</h2>
+            </div>
+            <button id="statusBtn" class="bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-lg transition duration-300 font-semibold mb-4">
+                ✅ Verificar Estado de APIs
+            </button>
+            <div id="statusResult" class="hidden p-4 bg-gray-50 rounded-lg">
+                <pre id="statusInfo" class="text-sm text-gray-700 whitespace-pre-wrap"></pre>
+            </div>
+        </div>
+
+        <!-- Información Técnica -->
+        <div class="mt-8 bg-blue-50 rounded-lg p-6 border-l-4 border-blue-500">
+            <h3 class="text-xl font-bold text-blue-800 mb-3">📋 Información Técnica</h3>
+            <div class="grid md:grid-cols-2 gap-4 text-sm">
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">APIs Integradas:</h4>
+                    <ul class="text-blue-600 space-y-1">
+                        <li>• Quotable.io - Citas inspiracionales</li>
+                        <li>• wttr.in - Información meteorológica</li>
+                        <li>• Backend propio - Estado del sistema</li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold text-blue-700 mb-2">Endpoints Backend:</h4>
+                    <ul class="text-blue-600 space-y-1">
+                        <li>• GET /api/external/quote</li>
+                        <li>• GET /api/external/weather/{city}</li>
+                        <li>• GET /api/external/status</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Pie de Página -->
+    <footer class="bg-gray-900 text-white py-8 mt-auto">
+        <div class="container mx-auto px-4 text-center">
+            <span class="text-lg font-bold">PuertoGames</span>
+            <p class="text-gray-400 text-sm">PuertoGames © 2025. Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api-demo.js"></script>
+</body>
+</html>

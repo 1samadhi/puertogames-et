@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PUBG: BATTLEGROUNDS - PuertoGames</title>
+    <link href="output.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+    <!-- Barra de Navegación -->
+    <nav class="bg-gray-900 text-white shadow-lg fixed w-full top-0 z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center py-4">
+                <!-- Logo y Marca -->
+                <div class="flex items-center space-x-2">
+                    <a href="index.html" class="flex items-center space-x-2 hover:opacity-80 transition duration-300">
+                        <svg class="w-8 h-8 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-xl font-bold">PuertoGames</span>
+                    </a>
+                </div>
+
+                <!-- Menú de Escritorio -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="hover:text-blue-400 transition duration-300 font-medium">Inicio</a>
+                    <a href="productos.html" class="hover:text-blue-400 transition duration-300 font-medium">Productos</a>
+                    <a href="contacto.html" class="hover:text-blue-400 transition duration-300 font-medium">Contacto</a>
+                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
+                        Iniciar Sesión
+                    </button>
+                </div>
+
+                <!-- Botón Menú Móvil -->
+                <button class="md:hidden focus:outline-none" id="mobile-menu-button">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Menú Móvil -->
+            <div class="md:hidden hidden" id="mobile-menu">
+                <div class="px-2 pt-2 pb-3 space-y-1">
+                    <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Inicio</a>
+                    <a href="productos.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Productos</a>
+                    <a href="contacto.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Contacto</a>
+                    <button class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
+                        Iniciar Sesión
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Contenedor Principal -->
+    <div class="flex-grow flex flex-col min-h-screen">
+        <!-- Espacio para la barra de navegación fija -->
+        <div class="pt-16 flex-grow">
+            <!-- Detalle del Producto -->
+            <main class="container mx-auto px-4 py-8">
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8">
+                        <!-- Imagen del Producto -->
+                        <div class="relative">
+                            <img src="https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG: BATTLEGROUNDS" class="w-full h-auto rounded-lg shadow-md">
+                            <div class="absolute top-4 right-4 bg-blue-500 text-white px-3 py-1 rounded-full text-sm font-bold">$29.990</div>
+                        </div>
+
+                        <!-- Información del Producto -->
+                        <div class="flex flex-col">
+                            <h1 class="text-3xl font-bold mb-4">PUBG: BATTLEGROUNDS</h1>
+                            <div class="flex items-center space-x-2 mb-4">
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">Battle Royale</span>
+                                <span class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm">FPS</span>
+                            </div>
+                            <p class="text-gray-600 mb-6">
+                                PUBG: BATTLEGROUNDS es el juego que inició el fenómeno Battle Royale. Lucha por la supervivencia en un campo de batalla de 100 jugadores, donde solo uno puede quedar en pie. Explora el vasto mapa, encuentra armas y equipo, y compite contra otros jugadores en una experiencia intensa y estratégica.
+                            </p>
+                            <div class="mb-6">
+                                <h2 class="text-xl font-semibold mb-2">Características principales:</h2>
+                                <ul class="list-disc list-inside text-gray-600 space-y-2">
+                                    <li>Modo Battle Royale de 100 jugadores</li>
+                                    <li>Múltiples mapas únicos</li>
+                                    <li>Sistema de combate realista</li>
+                                    <li>Modos de juego variados</li>
+                                    <li>Personalización de personaje</li>
+                                </ul>
+                            </div>
+                            <div class="mt-auto">
+                                <div class="flex items-center space-x-4 mb-6">
+                                    <span class="text-3xl font-bold text-blue-600">$29.990</span>
+                                </div>
+                                <button class="w-full bg-blue-600 text-white py-3 rounded-lg hover:bg-blue-700 transition duration-300 text-lg font-semibold">
+                                    Comprar Ahora
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sección de Requisitos del Sistema -->
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden mt-8">
+                    <div class="p-8">
+                        <h2 class="text-2xl font-bold mb-6">Requisitos del Sistema</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4">Mínimos:</h3>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li>SO: 64-bit Windows 7, Windows 8.1, Windows 10</li>
+                                    <li>Procesador: Intel Core i5-4430 / AMD FX-6300</li>
+                                    <li>Memoria: 8 GB de RAM</li>
+                                    <li>Gráficos: NVIDIA GeForce GTX 960 2GB / AMD Radeon R7 370 2GB</li>
+                                    <li>DirectX: Versión 11</li>
+                                    <li>Almacenamiento: 30 GB de espacio disponible</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-lg font-semibold mb-4">Recomendados:</h3>
+                                <ul class="space-y-2 text-gray-600">
+                                    <li>SO: 64-bit Windows 10</li>
+                                    <li>Procesador: Intel Core i5-6600K / AMD Ryzen 5 1600</li>
+                                    <li>Memoria: 16 GB de RAM</li>
+                                    <li>Gráficos: NVIDIA GeForce GTX 1060 3GB / AMD Radeon RX 580 4GB</li>
+                                    <li>DirectX: Versión 11</li>
+                                    <li>Almacenamiento: 30 GB de espacio disponible</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+
+        <!-- Pie de Página -->
+        <footer class="bg-gray-900 text-white py-8 mt-auto">
+            <div class="container mx-auto px-4">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <!-- Sección de Marca -->
+                    <div class="flex items-center space-x-2">
+                        <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                        </svg>
+                        <span class="text-lg font-bold">PuertoGames</span>
+                    </div>
+
+                    <!-- Derechos de Autor -->
+                    <div class="text-center md:text-left">
+                        <p>PuertoGames © 2025</p>
+                        <p class="text-gray-400 text-sm">Todos los derechos reservados</p>
+                    </div>
+
+                    <!-- Enlaces -->
+                    <div class="flex flex-col space-y-2">
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Términos y Condiciones</a>
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Soporte</a>
+                        <a href="#" class="hover:text-blue-400 transition duration-300">Política de Privacidad</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript para el menú móvil -->
+    <script>
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+    </script>
+</body>
+</html> 
