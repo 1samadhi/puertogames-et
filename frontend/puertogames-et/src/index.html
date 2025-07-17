@@ -23,14 +23,17 @@
                     </a>
                 </div>
 
-                <!-- Menú de Escritorio -->
+                <!-- Menú de Navegación -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="index.html" class="hover:text-blue-400 transition duration-300 font-medium">Inicio</a>
                     <a href="productos.html" class="hover:text-blue-400 transition duration-300 font-medium">Productos</a>
                     <a href="contacto.html" class="hover:text-blue-400 transition duration-300 font-medium">Contacto</a>
-                    <button class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
-                        Iniciar Sesión
-                    </button>
+                    <a href="api-demo.html" class="hover:text-blue-400 transition duration-300 font-medium">APIs</a>
+                </div>
+
+                <!-- Contenedor para los botones de autenticación -->
+                <div class="right-nav flex items-center space-x-4">
+                    <!-- Los botones se insertarán aquí dinámicamente -->
                 </div>
 
                 <!-- Botón Menú Móvil -->
@@ -47,9 +50,10 @@
                     <a href="index.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Inicio</a>
                     <a href="productos.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Productos</a>
                     <a href="contacto.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">Contacto</a>
-                    <button class="w-full mt-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-md transition duration-300" onclick="window.location.href='login.html'">
-                        Iniciar Sesión
-                    </button>
+                    <a href="api-demo.html" class="block px-3 py-2 rounded-md text-base font-medium hover:bg-gray-700 hover:text-blue-400 transition duration-300">APIs</a>
+                    <div id="mobile-auth-buttons" class="pt-2 space-y-2">
+                        <!-- Los botones móviles se insertarán aquí dinámicamente -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -333,60 +337,60 @@
         });
 
         // Carrusel
-        const slides = document.querySelectorAll('.carousel-slide');
-        const dots = document.querySelectorAll('.carousel-dot');
-        const prevButton = document.getElementById('prevSlide');
-        const nextButton = document.getElementById('nextSlide');
         let currentSlide = 1;
+        const totalSlides = 4;
         let slideInterval;
 
+        const dots = document.querySelectorAll('.carousel-dot');
+        const slides = document.querySelectorAll('.carousel-slide');
+        const prevButton = document.getElementById('prevSlide');
+        const nextButton = document.getElementById('nextSlide');
+
         function showSlide(slideNumber) {
-            // Ocultar todos los slides
+            // Ocultar todas las diapositivas
             slides.forEach(slide => {
                 slide.style.opacity = '0';
-            });
-            dots.forEach(dot => {
-                dot.style.opacity = '0.5';
+                slide.style.pointerEvents = 'none';
             });
 
-            // Mostrar el slide seleccionado
-            const selectedSlide = document.querySelector(`[data-slide="${slideNumber}"]`);
-            const selectedDot = document.querySelector(`.carousel-dot[data-slide="${slideNumber}"]`);
-            if (selectedSlide) selectedSlide.style.opacity = '1';
-            if (selectedDot) selectedDot.style.opacity = '1';
+            // Mostrar la diapositiva actual
+            const currentSlideElement = document.querySelector(`.carousel-slide[data-slide="${slideNumber}"]`);
+            if (currentSlideElement) {
+                currentSlideElement.style.opacity = '1';
+                currentSlideElement.style.pointerEvents = 'auto';
+            }
+
+            // Actualizar los puntos de navegación
+            dots.forEach(dot => {
+                dot.classList.toggle('opacity-100', dot.dataset.slide === slideNumber.toString());
+                dot.classList.toggle('opacity-50', dot.dataset.slide !== slideNumber.toString());
+            });
 
             currentSlide = slideNumber;
         }
 
         function nextSlide() {
-            let next = currentSlide + 1;
-            if (next > slides.length) next = 1;
-            showSlide(next);
+            const newSlide = currentSlide === totalSlides ? 1 : currentSlide + 1;
+            showSlide(newSlide);
+            resetInterval();
         }
 
         function prevSlide() {
-            let prev = currentSlide - 1;
-            if (prev < 1) prev = slides.length;
-            showSlide(prev);
+            const newSlide = currentSlide === 1 ? totalSlides : currentSlide - 1;
+            showSlide(newSlide);
+            resetInterval();
         }
 
         // Event listeners para los controles del carrusel
         dots.forEach(dot => {
             dot.addEventListener('click', () => {
-                showSlide(dot.dataset.slide);
+                showSlide(parseInt(dot.dataset.slide));
                 resetInterval();
             });
         });
 
-        prevButton.addEventListener('click', () => {
-            prevSlide();
-            resetInterval();
-        });
-
-        nextButton.addEventListener('click', () => {
-            nextSlide();
-            resetInterval();
-        });
+        prevButton.addEventListener('click', prevSlide);
+        nextButton.addEventListener('click', nextSlide);
 
         // Función para reiniciar el intervalo
         function resetInterval() {
@@ -396,11 +400,14 @@
 
         // Función para iniciar el intervalo
         function startSlideInterval() {
-            slideInterval = setInterval(nextSlide, 5000); // Cambiar slide cada 5 segundos
+            slideInterval = setInterval(nextSlide, 5000);
         }
 
         // Iniciar el carrusel
         startSlideInterval();
     </script>
+    
+    <!-- Script para la barra de navegación dinámica -->
+    <script src="js/navbar.js"></script>
 </body>
-</html> 
+</html>

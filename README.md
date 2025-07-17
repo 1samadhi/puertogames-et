@@ -1,13 +1,54 @@
 # 🚀 PuertoGames - Plataforma de Gestión de Juegos
 
 ## 🌐 En Vivo
-🔗 **Link del proyecto:** [https://fastidious-cocada-49b8db.netlify.app/](https://fastidious-cocada-49b8db.netlify.app/)
+🔗 **Link del proyecto:** [https://beamish-pixie-eefb71.netlify.app/](https://beamish-pixie-eefb71.netlify.app/)
 
 ## 👥 Integrantes del Equipo
 1. [Ismael Oyarzún] 
 2. [Angel Bustamante] 
 3. [Matias Loyola] 
 4. [Miguel Muñoz] 
+
+## 📖 Descripción del Proyecto
+PuertoGames es una plataforma web moderna para la gestión y visualización de videojuegos, desarrollada como parte del examen final de la asignatura de Desarrollo Java para Web. La aplicación permite a los usuarios registrarse, iniciar sesión, gestionar su perfil y acceder a contenido dinámico a través de APIs externas.
+
+### ✨ Características Principales
+- **Autenticación de Usuarios**: Registro e inicio de sesión seguro
+- **Perfil de Usuario**: Gestión de información personal
+- **APIs Externas**: Integración con servicios de clima y citas inspiracionales
+- **Diseño Responsive**: Adaptable a diferentes dispositivos
+- **Interfaz Moderna**: Desarrollada con Tailwind CSS
+
+### 🛠️ Tecnologías Utilizadas
+- **Frontend**: HTML5, CSS3, JavaScript, Tailwind CSS
+- **Backend**: Java Spring Boot 3.5.3
+- **Base de Datos**: PostgreSQL (alojada en Railway)
+- **Despliegue**: 
+  - Frontend: Netlify
+  - Backend: Railway
+- **APIs Externas**: Quotable.io, wttr.in
+
+## 🚀 Cómo Usar
+
+### Configuración del Entorno Local
+
+1. **Backend (Spring Boot)**
+   - Asegúrate de tener Java 17+ y Maven instalados
+   - Configura las variables de entorno en `application.properties`
+   - Ejecuta: `mvn spring-boot:run`
+   - El servidor estará disponible en `http://localhost:8080`
+
+2. **Frontend**
+   - Abre el archivo `index.html` en tu navegador
+   - O usa un servidor local como Live Server de VSCode
+
+### Uso Básico
+1. **Registro**: Crea una cuenta nueva
+2. **Inicio de Sesión**: Accede con tus credenciales
+3. **Perfil**: Actualiza tu información personal
+4. **Explorar**: Navega por las diferentes secciones de la aplicación
+
+
 
 ## 📋 Información del Proyecto
 
@@ -257,9 +298,3 @@ GET http://localhost:8080/api/external/status
 - Documentación completa
 - Arquitectura escalable
 - Múltiples APIs externas
-
----
-
-**Desarrollado por:** [Tu Nombre]  
-**Fecha de entrega:** 17 de Julio, 2025  
-**Examen:** Desarrollo Java para Web - Final Transversal

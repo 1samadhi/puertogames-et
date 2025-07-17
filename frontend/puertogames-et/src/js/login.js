@@ -68,6 +68,19 @@ document.getElementById('loginForm').addEventListener('submit', async function(e
             
             // Guardar información del usuario en localStorage
             localStorage.setItem('userToken', data.token || 'logged_in');
+            
+            // Crear y guardar objeto con los datos del usuario
+            const userData = {
+                id: data.usuario.id,
+                username: data.usuario.username || data.usuario.nombre,
+                email: data.usuario.email,
+                nombre: data.usuario.nombre,
+                apellido: data.usuario.apellido || '',
+                fechaRegistro: data.usuario.fechaRegistro || new Date().toISOString()
+            };
+            localStorage.setItem('userData', JSON.stringify(userData));
+            
+            // Mantener compatibilidad con código existente
             localStorage.setItem('userId', data.usuario.id);
             localStorage.setItem('userName', data.usuario.nombre);
             
