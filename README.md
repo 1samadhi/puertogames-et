@@ -1,8 +1,16 @@
-# 🎓 Examen Final Transversal - Desarrollo Java para Web
+# 🚀 PuertoGames - Plataforma de Gestión de Juegos
+
+## 🌐 En Vivo
+🔗 **Link del proyecto:** [https://fastidious-cocada-49b8db.netlify.app/](https://fastidious-cocada-49b8db.netlify.app/)
+
+## 👥 Integrantes del Equipo
+1. [Ismael Oyarzún] 
+2. [Angel Bustamante] 
+3. [Matias Loyola] 
+4. [Miguel Muñoz] 
 
 ## 📋 Información del Proyecto
 
-**Estudiante:** [Tu Nombre]  
 **Asignatura:** Desarrollo Java para Web  
 **Tipo:** Examen Final Transversal  
 **Duración:** 3 horas  

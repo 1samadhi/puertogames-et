@@ -1,7 +1,7 @@
 // config.js - Configuración de URLs del backend
 const CONFIG = {
-    // URL del backend en producción (Railway) - Se actualizará cuando esté desplegado
-    PRODUCTION_API: 'https://tu-backend-railway.up.railway.app/api',
+    // URL del backend en producción (Railway)
+    PRODUCTION_API: 'https://backend-puertogames-production.up.railway.app/api',
     
     // URL del backend en desarrollo local
     DEVELOPMENT_API: 'http://localhost:9999/api',
